@@ -1,4 +1,5 @@
-const { translate } = require('free-translate');
+// const { translate } = require('free-translate');
+const { translate } = require('bing-translate-api');
 const exp = require('express');
 const cors = require('cors');
 const app = exp();
@@ -10,11 +11,13 @@ app.use(exp.urlencoded({extended: true}));
 app.get("/translate", (req,res) => {
     const text = req.query.text;
     console.log(text);
-    translate(text, { from: 'en', to: 'hi' })
-    .then(result => {
-        res.send({output: result})
-    })
-    .catch(err => console.log("err in translator", err));
+
+    translate(text, null, 'en').then(res => {
+        res.send({output: res.translation})
+    }).catch(err => {
+        console.error("err in translator", err);
+    });
+
 })
 
 let port = process.env.PORT;
