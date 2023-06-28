@@ -16,6 +16,7 @@ app.get("/translate", (req,res) => {
         res.send({output: result.translation})
     }).catch(err => {
         console.error("err in translator", err);
+        res.send({output: "Please Try again!"})
     });
 
 })
