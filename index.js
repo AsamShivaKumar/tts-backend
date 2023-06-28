@@ -9,6 +9,7 @@ app.use(exp.urlencoded({extended: true}));
 
 app.get("/translate", (req,res) => {
     const text = req.query.text;
+    console.log(text);
     translate(text, { from: 'en', to: 'hi' }).then(result => {
         res.send({output: result})
     });
