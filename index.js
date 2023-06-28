@@ -12,8 +12,8 @@ app.get("/translate", (req,res) => {
     const text = req.query.text;
     console.log(text);
 
-    translate(text, null, 'en').then(res => {
-        res.send({output: res.translation})
+    translate(text, null, 'en').then(result => {
+        res.send({output: result.translation})
     }).catch(err => {
         console.error("err in translator", err);
     });
